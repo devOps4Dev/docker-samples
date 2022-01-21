@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+  laravel:
+    image: richarddaros1/php-laravel:prod
+    container_name: php-laravel-prod
+    networks:
+      - laravelnet
+
+  nginx:
+    image: richarddaros1/nginx-laravel:prod
+    container_name: nginx-with-laravel
+    networks:
+      - laravelnet
+    ports:
+      - "8080:80"
+
+networks:
+  laravelnet:
+    driver: bridge
