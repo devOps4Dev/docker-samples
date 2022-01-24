@@ -2,12 +2,18 @@ version: '3'
 
 services:
   laravel:
+    build:
+      context: ../php-laravel
+      dockerfile: Dockerfile.prod
     image: richarddaros1/php-laravel:prod
     container_name: php-laravel-prod
     networks:
       - laravelnet
 
   nginx:
+    build:
+      context: ../nginx-with-laravel
+      dockerfile: Dockerfile.prod
     image: richarddaros1/nginx-laravel:prod
     container_name: nginx-with-laravel
     networks:
