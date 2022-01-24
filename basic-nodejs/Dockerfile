@@ -2,10 +2,10 @@ FROM node:15
 
 WORKDIR /usr/src/app
 
-COPY . .
+# COPY . .
 
-RUN yarn install 
+# RUN yarn install 
 
 EXPOSE 3000
 
-CMD ["node", "index.js"]
+# CMD ["node", "index.js"]

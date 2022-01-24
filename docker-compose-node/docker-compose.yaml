@@ -1,0 +1,36 @@
+version: '3'
+
+services:
+  app:
+    container_name: app
+    build:
+      context: ../basic-nodejs
+    command: sh -c "yarn install && node index.js"
+    networks:
+      - node-network
+    volumes:
+      - ../basic-nodejs:/usr/src/app
+    tty: true
+    ports:
+      - "3000:3000"
+
+  db:
+    container_name: db
+    image: mysql:5.7
+    command: --innodb-use-native-aio=0
+    restart: always
+    tty: true
+    volumes:
+      - ./mysql:/var/lib/mysql
+    environment:
+      - MYSQL_DATABASE=nodedb
+      - MYSQL_ROOT_PASSWORD=senha@124
+      - MYSQL_USER=newUserMysql
+    networks:
+      - node-network
+
+
+
+networks:
+  node-network:
+    driver: bridge
